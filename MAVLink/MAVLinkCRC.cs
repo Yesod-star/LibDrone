@@ -15,8 +15,6 @@
             }
         }
 
-
-
         public static ushort crc_calculate(byte[] pBuffer, int length)
         {
             if (length < 1)

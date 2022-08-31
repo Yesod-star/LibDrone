@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -54,24 +56,20 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MAVLink\Changemode.cs" />
-    <Compile Include="MAVLink\FlyToPoint.cs" />
-    <Compile Include="MAVLink\Heartbeat.cs" />
-    <Compile Include="MAVLink\Land.cs" />
-    <Compile Include="MAVLink\MAVLinkCRC.cs" />
-    <Compile Include="MAVLink\MavlinkMessage.cs" />
-    <Compile Include="MAVLink\MAVLinkParse.cs" />
+    <Compile Include="MAVLink\component_information\Parameter.cs" />
+    <Compile Include="MAVLink\Mavlink.cs" />
+    <Compile Include="MAVLink\MavlinkCRC.cs" />
+    <Compile Include="MAVLink\MAVLinkMessage.cs" />
+    <Compile Include="MAVLink\MAVLinkParam.cs" />
+    <Compile Include="MAVLink\MAVLinkParamList.cs" />
+    <Compile Include="MAVLink\MavlinkParse.cs" />
     <Compile Include="MAVLink\MavlinkUtil.cs" />
-    <Compile Include="MAVLink\Messages.cs" />
-    <Compile Include="MAVLink\Ping.cs" />
-    <Compile Include="MAVLink\TakeOff.cs" />
-    <Compile Include="MAVLink\Text.cs" />
-    <Compile Include="MAVLink\Variables.cs" />
     <Compile Include="simpleexample.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +116,15 @@
       <Project>{20296734-5f3c-4593-a0d5-dd20b440b13a}</Project>
       <Name>MAVLink</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MAVLink\message_definitions\ardupilotmega.xml" />
+    <Content Include="MAVLink\message_definitions\common.xml" />
+    <Content Include="MAVLink\message_definitions\icarous.xml" />
+    <Content Include="MAVLink\message_definitions\loweheiser.xml" />
+    <Content Include="MAVLink\message_definitions\minimal.xml" />
+    <Content Include="MAVLink\message_definitions\offspec.xml" />
+    <Content Include="MAVLink\message_definitions\uAvionix.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
