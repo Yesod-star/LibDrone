@@ -159,9 +159,11 @@ namespace SimpleExample
 
         private void but_armdisarm_Click(object sender, EventArgs e)
         {
+            //Variavel para armazenar o comando
             MAVLink.mavlink_command_long_t req = new MAVLink.mavlink_command_long_t();
-            Console.WriteLine("teste");
 
+
+            //Geracao do comando
             req.target_system = 1;
             req.target_component = 1;
 
@@ -169,20 +171,19 @@ namespace SimpleExample
 
             req.param1 = armed ? 0 : 1;
             armed = !armed;
-            /*
-            req.param2 = p2;
-            req.param3 = p3;
-            req.param4 = p4;
-            req.param5 = p5;
-            req.param6 = p6;
-            req.param7 = p7;
-            */
 
+
+
+
+            //Armazenamento do comando
             byte[] packet = mavlink.GenerateMAVLinkPacket10(MAVLink.MAVLINK_MSG_ID.COMMAND_LONG, req);
 
-            UdpSerialConnect1.Write(packet, 0, packet.Length);
-            Console.WriteLine("teste");
 
+            //Envio do comando
+            UdpSerialConnect1.Write(packet, 0, packet.Length);
+
+
+            //Ver se esta sendo aceito o comando
             try
             {
                 var ack = readsomedata<MAVLink.mavlink_command_ack_t>(sysid, compid);
@@ -194,7 +195,9 @@ namespace SimpleExample
             catch 
             { 
             }
+
         }
+
 
         private void CMB_comport_Click(object sender, EventArgs e)
         {
@@ -203,68 +206,67 @@ namespace SimpleExample
 
         private void but_mission_Click(object sender, EventArgs e)
         {
-            MAVLink.mavlink_mission_count_t req = new MAVLink.mavlink_mission_count_t();
+            //Variavel para armazenar o comando2
+            MAVLink.mavlink_command_long_t req2 = new MAVLink.mavlink_command_long_t();
 
-            req.target_system = 1;
-            req.target_component = 1;
+            //Geracao do 2 comando
+            req2.target_system = 1;
+            req2.target_component = 1;
 
-            // set wp count
-            req.count = 1;
+            req2.command = (ushort)MAVLink.MAV_CMD.DO_SET_MODE;
+            req2.param1 = 5;
+            req2.param2 = 4;
+            req2.param3 = 0;
 
-            byte[] packet = mavlink.GenerateMAVLinkPacket10(MAVLink.MAVLINK_MSG_ID.MISSION_COUNT, req);
-            Console.WriteLine("MISSION_COUNT send");
-            UdpSerialConnect1.Write(packet, 0, packet.Length);
+            //Armazenamento do comando2
+            byte[] packet2 = mavlink.GenerateMAVLinkPacket10(MAVLink.MAVLINK_MSG_ID.COMMAND_LONG, req2);
 
-            var ack = readsomedata<MAVLink.mavlink_mission_request_t>(sysid, compid);
-            if (ack.seq == 0)
+            //Envio do comando2
+            UdpSerialConnect1.Write(packet2, 0, packet2.Length);
+
+            //Ver se esta sendo aceito o comando
+            try
             {
-                MAVLink.mavlink_mission_item_int_t req2 = new MAVLink.mavlink_mission_item_int_t();
-
-                req2.target_system = sysid;
-                req2.target_component = compid;
-
-                req2.command = (byte)MAVLink.MAV_CMD.WAYPOINT;
-
-                req2.current = 1;
-                req2.autocontinue = 0;
-
-                req2.frame = (byte)MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT;
-
-                req2.y = (int) (115 * 1.0e7);
-                req2.x = (int) (-35 * 1.0e7);
-
-                req2.z = (float) (2.34);
-
-                req2.param1 = 0;
-                req2.param2 = 0;
-                req2.param3 = 0;
-                req2.param4 = 0;
-
-                req2.seq = 0;
-
-                packet = mavlink.GenerateMAVLinkPacket10(MAVLink.MAVLINK_MSG_ID.MISSION_ITEM_INT, req2);
-                Console.WriteLine("MISSION_ITEM_INT send");
-                lock (readlock)
+                var ack = readsomedata<MAVLink.mavlink_command_ack_t>(sysid, compid);
+                if (ack.result == (byte)MAVLink.MAV_RESULT.ACCEPTED)
                 {
-                    UdpSerialConnect1.Write(packet, 0, packet.Length);
 
-                    var ack2 = readsomedata<MAVLink.mavlink_mission_ack_t>(sysid, compid);
-                    if ((MAVLink.MAV_MISSION_RESULT) ack2.type != MAVLink.MAV_MISSION_RESULT.MAV_MISSION_ACCEPTED)
-                    {
-
-                    }
                 }
+            }
+            catch
+            {
+            }
 
+            //Variavel para armazenar o comando3
+            MAVLink.mavlink_command_long_t req3 = new MAVLink.mavlink_command_long_t();
 
-                MAVLink.mavlink_mission_ack_t req3 = new MAVLink.mavlink_mission_ack_t();
-                req3.target_system = 1;
-                req3.target_component = 1;
-                req3.type = 0;
+            //Geracao do 3 comando
+            req3.target_system = 1;
+            req3.target_component = 1;
 
-                packet = mavlink.GenerateMAVLinkPacket10(MAVLink.MAVLINK_MSG_ID.MISSION_ACK, req3);
-                Console.WriteLine("MISSION_ACK send");
-                UdpSerialConnect1.Write(packet, 0, packet.Length);
+            req3.command = (ushort)MAVLink.MAV_CMD.TAKEOFF;
+            req3.param7 = 75;
+
+            //Armazenamento do comando2
+            byte[] packet3 = mavlink.GenerateMAVLinkPacket10(MAVLink.MAVLINK_MSG_ID.COMMAND_LONG, req3);
+
+            //Envio do comando2
+            UdpSerialConnect1.Write(packet3, 0, packet3.Length);
+
+            //Ver se esta sendo aceito o comando
+            try
+            {
+                var ack = readsomedata<MAVLink.mavlink_command_ack_t>(sysid, compid);
+                if (ack.result == (byte)MAVLink.MAV_RESULT.ACCEPTED)
+                {
+
+                }
+            }
+            catch
+            {
             }
         }
+
+
     }
 }

@@ -62,6 +62,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MAVLink\Comandos\Arm.cs" />
+    <Compile Include="MAVLink\Comandos\changeMode.cs" />
+    <Compile Include="MAVLink\Comandos\Connect.cs" />
+    <Compile Include="MAVLink\Comandos\ReadSomeData.cs" />
     <Compile Include="MAVLink\component_information\Parameter.cs" />
     <Compile Include="MAVLink\Mavlink.cs" />
     <Compile Include="MAVLink\MavlinkCRC.cs" />

@@ -99,7 +99,6 @@ namespace MissionPlanner.Comms
 
         public void Open()
         {
-
             //if (client.Client.Connected || IsOpen)
             //{
             //    log.Info("UDPSerial socket already open");

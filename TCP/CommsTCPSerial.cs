@@ -101,12 +101,11 @@ namespace MissionPlanner.Comms
             try
             {
                 inOpen = true;
-                if (client.Client.Connected)
-                {
-                    log.Warn("tcpserial socket already open");
-                    return;
-                }
-
+                //if (client.Client.Connected)
+                //{
+                //    log.Warn("tcpserial socket already open");
+                //    return;
+                //}
                 var dest = Port;
                 var host = "127.0.0.1";
 
@@ -143,7 +142,6 @@ namespace MissionPlanner.Comms
             }
             catch
             {
-                Console.WriteLine("teste");
 
                 // disable if the first connect fails
                 autoReconnect = false;
