@@ -36,10 +36,12 @@ namespace SimpleExample
             Console.WriteLine("Enter to arm");
             Console.ReadLine();
             DroneAct.but_armdisarm();
+            Console.WriteLine("Enter to enter flight mode:");
+            Console.ReadLine();
+            DroneAct.but_changeMode("GUIDED");
             Console.WriteLine("Type height for flight:");
             alt = Int32.Parse(Console.ReadLine());
-            DroneAct.but_changeMode("GUIDED");
-            DroneAct.but_takeoff(alt);
+            DroneAct.but_takeoff(80);
             Console.WriteLine("Type for model of flight(GUIDED, STABILIZED, LOITER, LAND, ALTHOLD or AUTO)");
             mode1 = Console.ReadLine();
             DroneAct.but_changeMode(mode1);

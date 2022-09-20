@@ -501,7 +501,7 @@ namespace LibDrone
                     }
 
                     // set the comport options
-                    serialPort1.PortName = "SERIAL1";
+                    serialPort1.PortName = "COM"+port;
                     serialPort1.BaudRate = frequency;
 
                     // open the comport
@@ -795,6 +795,8 @@ namespace LibDrone
             req.param2 = 0;
             req.param3 = 0;
             req.param4 = 0;
+            req.param5 = 0;
+            req.param6 = 0;
             req.param7 = 75;
 
             //Armazenamento do comando
