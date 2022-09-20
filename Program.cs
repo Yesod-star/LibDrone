@@ -24,29 +24,29 @@ namespace SimpleExample
         static void Main()
         {
 
-            Console.WriteLine("Digite o modelo de Conexão(UDP, TCP ou SERIAL):");
+            Console.WriteLine("Type the connection model(UDP, TCP or SERIAL):");
             connection = Console.ReadLine();
-            Console.WriteLine("Digite o numero da porta da Conexão:");
+            Console.WriteLine("Type the number of the connection door:");
             port = Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Digite a frequência da Conexão:");
+            Console.WriteLine("Type the frequency of the connection:");
             frequency = Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Aperte para se Conectar");
+            Console.WriteLine("Enter to connect");
             Console.ReadLine();
             DroneAct.but_connect_without_message(port,frequency,connection);
-            Console.WriteLine("Aperte para se Armar");
+            Console.WriteLine("Enter to arm");
             Console.ReadLine();
             DroneAct.but_armdisarm();
-            Console.WriteLine("Digite a altura do voo:");
+            Console.WriteLine("Type height for flight:");
             alt = Int32.Parse(Console.ReadLine());
             DroneAct.but_changeMode("GUIDED");
             DroneAct.but_takeoff(alt);
-            Console.WriteLine("Digite o modo do Drone(GUIDED, STABILIZED, LOITER, LAND, ALTHOLD ou AUTO)");
+            Console.WriteLine("Type for model of flight(GUIDED, STABILIZED, LOITER, LAND, ALTHOLD or AUTO)");
             mode1 = Console.ReadLine();
             DroneAct.but_changeMode(mode1);
-            Console.WriteLine("Aperte para voar");
+            Console.WriteLine("Enter to fly");
             Console.ReadLine();
             DroneAct.but_waypoint();
-            Console.WriteLine("Aperte para pousar");
+            Console.WriteLine("Enter to land");
             Console.ReadLine();
             DroneAct.but_changeMode("LAND");
             DroneAct.but_land();
