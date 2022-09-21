@@ -835,7 +835,7 @@ namespace LibDrone
             }
         }
 
-        public void but_waypoint()
+        public void but_waypoint(float coord1,float coord2, float alt)
         {
 
             MAVLink.mavlink_command_long_t req = new MAVLink.mavlink_command_long_t();
@@ -845,9 +845,9 @@ namespace LibDrone
             req.target_component = 190;
 
             req.command = (ushort)MAVLink.MAV_CMD.WAYPOINT;
-            req.param5 = -35.3594987f;
-            req.param6 = 149.1629219100f;
-            req.param7 = 75;
+            req.param5 = coord1;
+            req.param6 = coord2;
+            req.param7 = alt;
 
             //Armazenamento do comando
             byte[] packet = mavlink.GenerateMAVLinkPacket10(MAVLink.MAVLINK_MSG_ID.COMMAND_LONG, req);

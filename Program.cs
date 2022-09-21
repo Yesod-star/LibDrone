@@ -16,6 +16,8 @@ namespace SimpleExample
         static string connection;
         static string mode1;
         static int alt;
+        static int coord1;
+        static int coord2;
 
         /// <summary>
         /// The main entry point for the application.
@@ -47,7 +49,11 @@ namespace SimpleExample
             DroneAct.but_changeMode(mode1);
             Console.WriteLine("Enter to fly");
             Console.ReadLine();
-            DroneAct.but_waypoint();
+            Console.WriteLine("Enter coord1");
+            coord1 = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Enter coord2");
+            coord2 = Int32.Parse(Console.ReadLine());
+            DroneAct.but_waypoint(coord1,coord2,alt);
             Console.WriteLine("Enter to land");
             Console.ReadLine();
             DroneAct.but_changeMode("LAND");
