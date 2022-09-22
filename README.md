@@ -11,3 +11,12 @@ de missão MISSION PLANNER</p>
 
 <p>Este projeto foi desenvolvido com o objetivo de ser um projeto de conclusão de curso para a faculdade de Sistemas de Informações IFES Cachoeiro de Itapemirim
 do programador responsável</p>
+
+<h3>Utilização</h3>
+<p>Para utilização deste código, siga os seguintes passos:</p>
+<ul>
+<li>Instale o Visual Studio 2022 utilizando a seguinte configuração <a href="https://raw.githubusercontent.com/ArduPilot/MissionPlanner/master/vs2022.vsconfig">VS2022</li>
+<li>Com o Visual Studio instalado, crie um programa .net framework e adicione as pastas desta biblioteca</li>
+<li>Para chamar biblioteca invoque ela e crie um elemento da classe como mostrada no exemplo <a href="https://github.com/Yesod-star/LibDrone/blob/master/Program.cs">program.cs</a></li>
+<li>Dica: Caso queira fazer um teste da biblioteca, recomendamos a utilização do <a href="https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html">simulador ardupilot</a></li>
+</ul>
